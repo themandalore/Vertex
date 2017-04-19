@@ -9,6 +9,7 @@ import zipfile,os,urllib
 import time,requests
 
 from datetime import timedelta, date
+user = '####'
 
 def daterange(start_date, end_date):
     for n in range(int ((end_date - start_date).days)):
@@ -53,9 +54,9 @@ for product_id in products:
             print ('File already exists')
         else:        
             if dataset == 'rapid':
-                url='http://restv3.vertex-analytics.com:8080/ECHO.eco/serv=FAST/user=CFTC/vers=201/form=3/type=7/symb='+product_id+'/helm_date='+date+'/helm_query=HELM_OREC_ALL'
+                url='http://restv3.vertex-analytics.com:8080/ECHO.eco/serv=FAST/user='+user+'/vers=201/form=3/type=7/symb='+product_id+'/helm_date='+date+'/helm_query=HELM_OREC_ALL'
             else:
-                url='http://restv3.vertex-analytics.com:8080/ECHO.eco/serv=FAST/user=CFTC/vers=201/form=3/type=7/symb='+product_id+'/helm_date='+date+'/helm_query=HELM_BOOK_QUO/helm_depth=10'
+                url='http://restv3.vertex-analytics.com:8080/ECHO.eco/serv=FAST/user='+user+'/vers=201/form=3/type=7/symb='+product_id+'/helm_date='+date+'/helm_query=HELM_BOOK_QUO/helm_depth=10'
             print (url)
             all_data = getHistory(product_id, date)
             if all_data == None:
